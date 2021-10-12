@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private ParticleSystem _takeDamageEffect;
 
     public Player Target => _target; 
-    public event UnityAction Die ; 
+    public event UnityAction Died ; 
 
     public void TakeDamage(int damage,Vector3 collisionPoint)
     {
@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
         _health -= damage;
         if (_health <= 0)
         {
-            Die?.Invoke();
+            Died?.Invoke();
             ParticleSystem _effectExplosion = Instantiate(_dieEffect, transform.position, transform.rotation);
             _effectExplosion.Play();
             Destroy(gameObject);

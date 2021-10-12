@@ -17,7 +17,7 @@ public abstract class Transition : MonoBehaviour
         Enemy = GetComponent<Enemy>();
     }
 
-    protected void SwitchOnTransition()
+    protected void OnSwitchOnTransition()
     {
         _needTransit = true;
     }

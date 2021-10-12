@@ -11,14 +11,14 @@ public class Game : MonoBehaviour
 
     private void Start()
     {
-        _player.Die += _restartScreen.Open;
-        _enemy.Die += RewardPlayer;
+        _player.Died += _restartScreen.Open;
+        _enemy.Died += OnRewardPlayer;
     }
 
     private void OnDisable()
     {
-        _player.Die -= _restartScreen.Open;
-        _enemy.Die -= RewardPlayer;
+        _player.Died -= _restartScreen.Open;
+        _enemy.Died -= OnRewardPlayer;
     }
 
     public void Restart()
@@ -28,9 +28,9 @@ public class Game : MonoBehaviour
         _player.SwichOnPlayer();
     }
 
-    public void RewardPlayer()
+    public void OnRewardPlayer()
     {
         var cake = Instantiate(_templateCake,_enemy.transform.position, _enemy.transform.rotation);
-        cake.OnEat += _victoryScreen.Open;
+        cake.Ate += _victoryScreen.Open;
     }
 }

@@ -5,6 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(Player))]
 public class PlayerAnimator : MonoBehaviour
 {
+    public class Params
+    {
+        public const string Horizontal = "Horizontal";
+        public const string Vertical = "Vertical";
+        public const string Die = "Die";
+        public const string BlendTree = "Blend Tree";
+    }
+
     private PlayerInput _playerInput;
     private Animator _animator;
     private Player _player;
@@ -18,31 +26,31 @@ public class PlayerAnimator : MonoBehaviour
 
     private void OnEnable()
     {
-        _playerInput.Walk += Walk;
-        _player.Die += Die;
-        _player.Born += ReturnToBlendTree;
+        _playerInput.Walked += OnWalk;
+        _player.Died += OnDie;
+        _player.WasBorn += OnReturnToBlendTree;
     }
 
     private void OnDisable()
     {
-        _playerInput.Walk -= Walk;
-        _player.Die -= Die;
-        _player.Born -= ReturnToBlendTree;
+        _playerInput.Walked -= OnWalk;
+        _player.Died -= OnDie;
+        _player.WasBorn -= OnReturnToBlendTree;
     }
 
-    private void Walk(float horizontal, float vertical)
+    private void OnWalk(float horizontal, float vertical)
     {
-        _animator.SetFloat("Horizontal", horizontal);
-        _animator.SetFloat("Vertical", vertical);
+        _animator.SetFloat(Params.Horizontal, horizontal);
+        _animator.SetFloat(Params.Vertical , vertical);
     }
 
-    private void Die()
+    private void OnDie()
     {
-        _animator.Play("Die");
+        _animator.Play(Params.Die);
     }
 
-    private void ReturnToBlendTree()
+    private void OnReturnToBlendTree()
     {
-        _animator.Play("Blend Tree");
+        _animator.Play(Params.BlendTree);
     }
 }

@@ -10,7 +10,7 @@ public class StopFollowTransition : Transition
         {
             if (Vector3.Distance(transform.position, Target.transform.position) > _distanceToPlayer)
             {
-                SwitchOnTransition();
+                OnSwitchOnTransition();
             }
         }
     }

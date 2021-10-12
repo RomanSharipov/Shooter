@@ -2,11 +2,11 @@ public class RestartGameTransition : Transition
 {
     private void Start()
     {
-        Target.Born += SwitchOnTransition;
+        Target.WasBorn += OnSwitchOnTransition;
     }
 
     private void OnDisable()
     {
-        Target.Born -= SwitchOnTransition;
+        Target.WasBorn -= OnSwitchOnTransition;
     }
 }

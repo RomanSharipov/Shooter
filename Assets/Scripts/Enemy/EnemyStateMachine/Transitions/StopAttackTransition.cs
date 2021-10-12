@@ -9,7 +9,7 @@ public class StopAttackTransition : Transition
         if (Target != null) 
         {
             if (Vector3.Distance(transform.position, Target.transform.position) >= _distanceToPlayer)
-                SwitchOnTransition();
+                OnSwitchOnTransition();
         }
     }
 }

@@ -32,7 +32,6 @@ public class HealthBar : MonoBehaviour
             StopCoroutine(_changeValueCoroutine);
             _changeValueCoroutine = null;
         }
-        yield break;
     }
 
     private void OnChangeHealth(int targetHealth)

@@ -19,12 +19,12 @@ public class PlayerMove : MonoBehaviour
 
     private void OnEnable()
     {
-        _playerInput.Walk += Walk;
+        _playerInput.Walked += Walk;
     }
 
     private void OnDisable()
     {
-        _playerInput.Walk -= Walk;
+        _playerInput.Walked -= Walk;
     }
 
     private void Walk(float horizontal, float vertical)

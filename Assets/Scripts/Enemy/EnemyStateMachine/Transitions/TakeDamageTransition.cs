@@ -10,7 +10,7 @@ public class TakeDamageTransition : Transition
         {
             if (Vector3.Distance(transform.position, Target.transform.position) < _maxDistance)
             {
-                SwitchOnTransition();
+                OnSwitchOnTransition();
             }
         }
     }

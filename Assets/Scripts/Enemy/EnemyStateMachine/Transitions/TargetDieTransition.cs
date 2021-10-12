@@ -4,11 +4,11 @@ public class TargetDieTransition : Transition
 {
     private void Start()
     {
-        Target.Die += SwitchOnTransition;
+        Target.Died += OnSwitchOnTransition;
     }
 
     private void OnDisable()
     {
-        Target.Die -= SwitchOnTransition;
+        Target.Died -= OnSwitchOnTransition;
     }
 }

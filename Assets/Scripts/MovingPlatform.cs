@@ -28,7 +28,6 @@ public class MovingPlatform : MonoBehaviour
             StopCoroutine(_moveUpJob);
             _moveUpJob = null;
         }
-        yield break;
     }
 
     private IEnumerator MoveDown()
@@ -44,7 +43,6 @@ public class MovingPlatform : MonoBehaviour
             StopCoroutine(_moveDownJob);
             _moveDownJob = null;
         }
-        yield break;
     }
 
     private void OnCollisionEnter(Collision collision)
