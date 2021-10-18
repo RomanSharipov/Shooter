@@ -8,7 +8,7 @@ public class HealthBar : MonoBehaviour
     [SerializeField]private Player _player;
     [SerializeField]private float _speedDrawing;
 
-    private Coroutine _changeValueCoroutine;
+    private Coroutine _changeValueJob;
 
     private void OnEnable()
     {
@@ -27,20 +27,15 @@ public class HealthBar : MonoBehaviour
             _slider.value = Mathf.MoveTowards(_slider.value, targetHealth, Time.deltaTime * _speedDrawing);
             yield return null;
         }
-        if (_changeValueCoroutine != null)
-        {
-            StopCoroutine(_changeValueCoroutine);
-            _changeValueCoroutine = null;
-        }
     }
 
     private void OnChangeHealth(int targetHealth)
     {
-        if (_changeValueCoroutine != null)
+        if (_changeValueJob != null)
         {
-            StopCoroutine(_changeValueCoroutine);
-            _changeValueCoroutine = null;
+            StopCoroutine(_changeValueJob);
+            _changeValueJob = null;
         }
-        _changeValueCoroutine = StartCoroutine(ChangeValue(targetHealth));
+        _changeValueJob = StartCoroutine(ChangeValue(targetHealth));
     }
 }

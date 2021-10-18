@@ -6,8 +6,7 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] private Vector3 _endPosition;
     [SerializeField] private float _speed;
 
-    private Coroutine _moveUpJob;
-    private Coroutine _moveDownJob;
+    private Coroutine _moveJob;
     private Vector3 _startPosition;
 
     private void Start()
@@ -15,33 +14,12 @@ public class MovingPlatform : MonoBehaviour
         _startPosition = transform.position;
     }
 
-    private IEnumerator MoveUp()
+    private IEnumerator Move(Vector3 _targetPosition)
     {
-        while (transform.position != _endPosition)
+        while (transform.position != _targetPosition)
         {
-            transform.position = Vector3.MoveTowards(transform.position, _endPosition, Time.deltaTime * _speed);
+            transform.position = Vector3.MoveTowards(transform.position, _targetPosition, Time.deltaTime * _speed);
             yield return null;
-        }
-
-        if (_moveUpJob != null)
-        {
-            StopCoroutine(_moveUpJob);
-            _moveUpJob = null;
-        }
-    }
-
-    private IEnumerator MoveDown()
-    {
-        while (transform.position != _startPosition)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, _startPosition, Time.deltaTime * _speed);
-            yield return null;
-        }
-
-        if (_moveDownJob != null)
-        {
-            StopCoroutine(_moveDownJob);
-            _moveDownJob = null;
         }
     }
 
@@ -50,7 +28,12 @@ public class MovingPlatform : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out Player player))
         {
             player.transform.parent = gameObject.transform;
-            _moveUpJob = StartCoroutine(MoveUp());
+            if (_moveJob != null)
+            {
+                StopCoroutine(_moveJob);
+                _moveJob = null;
+            }
+            _moveJob = StartCoroutine(Move(_endPosition));
         }
     }
 
@@ -59,7 +42,12 @@ public class MovingPlatform : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out Player player))
         {
             player.transform.parent = null;
-            _moveDownJob = StartCoroutine(MoveDown());
+            if (_moveJob != null)
+            {
+                StopCoroutine(_moveJob);
+                _moveJob = null;
+            }
+            _moveJob = StartCoroutine(Move(_startPosition));
         }
     }
 }
