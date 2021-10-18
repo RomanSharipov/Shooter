@@ -1,10 +1,12 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public abstract class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     [SerializeField] private float _speed;
+    [SerializeField] private float _lifeTime;
     [SerializeField] private int _damage; 
+    [SerializeField] private ParticleSystem _templateCollisionEffect; 
 
     protected float Speed => _speed;
     protected int Damage => _damage;
@@ -25,6 +27,18 @@ public abstract class Bullet : MonoBehaviour
 
     private void OnEnable()
     {
-        Destroy(gameObject, 5);
+        Destroy(gameObject, _lifeTime);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        ParticleSystem collisionEffect = Instantiate(_templateCollisionEffect, collision.contacts[0].point, transform.rotation);
+        collisionEffect.Play();
+
+        if (collision.gameObject.TryGetComponent(out IDamageable character))
+        {
+            character.TakeDamage(Damage, collision.contacts[0].point);
+        }
+        Destroy(gameObject);
     }
 }

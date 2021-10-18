@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 7832966035601074080}
   - component: {fileID: 7727878334562877518}
   - component: {fileID: 7727878334562877517}
-  - component: {fileID: 4042582825236327477}
+  - component: {fileID: 8263906049845720779}
   m_Layer: 0
   m_Name: BulletEnemy
   m_TagString: Untagged
@@ -229,7 +229,7 @@ CapsuleCollider:
   m_Height: 0.25071582
   m_Direction: 2
   m_Center: {x: 0.0009774923, y: 0.002128339, z: 0.0077077947}
---- !u!114 &4042582825236327477
+--- !u!114 &8263906049845720779
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,8 +238,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7493877317618629914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6991aca6b0d9cfd4e97dd6abc5267f2b, type: 3}
+  m_Script: {fileID: 11500000, guid: 2915c5daf1bb56d45990261751220c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 2000
+  _lifeTime: 5
   _damage: 10
+  _templateCollisionEffect: {fileID: 4048081495464168496, guid: c92984f68d961114eb6b30642b7569bb, type: 3}

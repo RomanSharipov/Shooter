@@ -4,7 +4,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(PlayerInput))]
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     [SerializeField] private int _health;
 
@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
         _playerInput = GetComponent<PlayerInput>();
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage,Vector3 collisionPoint)
     {
         _health -= damage;
         HealthChanged?.Invoke(_health);
