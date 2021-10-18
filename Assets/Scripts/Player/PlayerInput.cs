@@ -5,17 +5,15 @@ public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private Joystick _joystick;
 
-    public event UnityAction<float,float> Walked;
+    public event UnityAction<Vector2> Walked;
     public event UnityAction Shot;
 
-    private float _horizontal;
-    private float _vertical;
+    private Vector2 _direction;
 
     private void FixedUpdate()
     {
-        _horizontal = _joystick.Horizontal;
-        _vertical = _joystick.Vertical;
-        Walked?.Invoke(_horizontal, _vertical);
+        _direction = new Vector2(_joystick.Horizontal, _joystick.Vertical);
+        Walked?.Invoke(_direction);
     }
 
     private void LateUpdate()

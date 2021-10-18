@@ -19,17 +19,17 @@ public class PlayerMover : MonoBehaviour
 
     private void OnEnable()
     {
-        _playerInput.Walked += Walk;
+        _playerInput.Walked += OnWalk;
     }
 
     private void OnDisable()
     {
-        _playerInput.Walked -= Walk;
+        _playerInput.Walked -= OnWalk;
     }
 
-    private void Walk(float horizontal, float vertical)
+    private void OnWalk(Vector2 direction)
     {
-        _direction = transform.right * horizontal + transform.forward * vertical;
+        _direction = transform.right * direction.x + transform.forward * direction.y;
         _rigidbody.velocity = _direction * _speed + Vector3.up * _rigidbody.velocity.y;
     }
 }

@@ -38,10 +38,10 @@ public class PlayerAnimator : MonoBehaviour
         _player.WasBorn -= OnReturnToBlendTree;
     }
 
-    private void OnWalk(float horizontal, float vertical)
+    private void OnWalk(Vector2 direction)
     {
-        _animator.SetFloat(Params.Horizontal, horizontal);
-        _animator.SetFloat(Params.Vertical , vertical);
+        _animator.SetFloat(Params.Horizontal, direction.x);
+        _animator.SetFloat(Params.Vertical , direction.y);
     }
 
     private void OnDie()
